@@ -11,8 +11,6 @@ function ClassSelection() {
         values.push(classes[key]);
     }
 
-    selectClass(keys[0]);
-
     return (
         <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
             <h5>Select class:</h5>

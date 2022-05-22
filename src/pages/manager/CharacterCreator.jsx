@@ -1,14 +1,26 @@
 import InputName from '../components/InputName';
 import ClassSelection from '../components/ClassSelection'
 import CharacterPreview from '../components/CharacterPreview';
-import { Link } from "solid-app-router"
-import { setCharacter } from '../../Character';
+
+import { Link } from "solid-app-router";
+
+import { setCharacter, rollPreset } from '../../Character';
 
 function CharacterCreator() {
+    rollPreset();
 
     return (
         <div class="center">
-            <h1 class="display-6">Character Creator</h1>
+            <div class="row">
+                <div class="col-md-auto">
+                    <h1 class="display-6">Character Creator</h1>
+                </div>
+                <div class="col-md-auto ms-auto my-auto">
+                    <button type="button" class="btn btn-outline-secondary" onClick={() => rollPreset()}>
+                        <i class="bi bi-dice-5-fill"></i>
+                    </button>
+                </div>
+            </div>
             <br />
             <InputName />
             <br />

@@ -1,8 +1,9 @@
 import { createSignal } from 'solid-js';
-import { attributes } from './Data';
+import { attributes, presets } from './Data';
+import { roll } from './Utils';
 
-export const [selectedClass, selectClass] = createSignal('');
 export const [characterName, setCharacterName] = createSignal('');
+export const [selectedClass, selectClass] = createSignal('');
 
 export let character = {}
 export const characterList = []
@@ -21,4 +22,10 @@ function createCharacter() {
         name: Object.assign(characterName()),
         attributes: Object.assign({}, attributes[selectedClass()])
     }
+}
+
+export function rollPreset() {
+    const preset = presets[roll(0, presets.length - 1)];
+    setCharacterName(preset.name);
+    selectClass(preset.class);
 }
