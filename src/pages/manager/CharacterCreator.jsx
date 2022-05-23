@@ -1,6 +1,7 @@
 import InputName from '../components/InputName';
 import ClassSelection from '../components/ClassSelection'
 import CharacterPreview from '../components/CharacterPreview';
+import BackButton from '../components/BackButton';
 
 import { Link } from "solid-app-router";
 
@@ -11,7 +12,10 @@ function CharacterCreator() {
     return (
         <div class="center">
             <div class="row">
-                <div class="col-auto">
+                <div class="col-auto my-auto">
+                    <BackButton href="/" />
+                </div>
+                <div class="col-auto ms-auto">
                     <h1 class="display-6">Character Creator</h1>
                 </div>
                 <div class="col-auto ms-auto my-auto">

@@ -1,10 +1,14 @@
+import BackButton from "../components/BackButton";
 import { character, setCharacter, removeCharacter } from "../../Character";
 
 function CharacterSheet() {
     return (
         <div class="center">
             <div class="row">
-                <div class="col-auto">
+                <div class="col-auto my-auto">
+                    <BackButton href="/" />
+                </div>
+                <div class="col-auto ms-auto">
                     <h1 class="display-6">Character Sheet</h1>
                 </div>
                 <div class="col-auto ms-auto my-auto">

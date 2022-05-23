@@ -1,6 +1,6 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
-import { Router } from 'solid-app-router';
+import { Router, hashIntegration } from 'solid-app-router';
 
 import './index.css';
 import 'bootstrap'
@@ -9,7 +9,7 @@ import App from './App';
 
 render(
     () => (
-        <Router>
+        <Router source={hashIntegration()}>
             <App />
         </Router>
     ),
