@@ -1,27 +1,37 @@
 import { createSignal } from 'solid-js';
+import { createStore } from 'solid-js/store'
 import { attributes, presets } from './Data';
 import { roll } from './Utils';
 
 export const [characterName, setCharacterName] = createSignal('');
 export const [selectedClass, selectClass] = createSignal('');
 
-export let character = {}
-export const characterList = []
+export const [character, setCharacter] = createStore(null);
 
-export function addCharacter() {
-    characterList.push(createCharacter());
+export function createCharacter() {
+    setCharacter(newCharacter());
 }
 
-export function setCharacter() {
-    character = createCharacter();
-    console.log(character);
-}
-
-function createCharacter() {
+function newCharacter() {
     return { 
-        name: Object.assign(characterName()),
+        name: characterName(),
         attributes: Object.assign({}, attributes[selectedClass()])
     }
+}
+
+export function saveCharacter() {
+    localStorage.setItem('character', JSON.stringify(character));
+}
+
+export function loadCharacter() {
+    const json = localStorage.getItem('character');
+    if (json)
+        setCharacter(JSON.parse(json));
+}
+
+export function removeCharacter() {
+    localStorage.removeItem('character');
+    window.location.reload();
 }
 
 export function rollPreset() {
