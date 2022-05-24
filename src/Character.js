@@ -15,6 +15,7 @@ export function createCharacter() {
 function newCharacter() {
     return { 
         name: characterName(),
+        class: selectedClass(),
         attributes: Object.assign({}, attributes[selectedClass()])
     }
 }
@@ -38,4 +39,8 @@ export function rollPreset() {
     const preset = presets[roll(0, presets.length - 1)];
     setCharacterName(preset.name);
     selectClass(preset.class);
+}
+
+export function modifyAttribute(name, value) {
+    setCharacter('attributes', name, character.attributes[name] + value);
 }

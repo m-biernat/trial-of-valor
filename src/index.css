@@ -70,3 +70,11 @@
     filter: none;
     opacity: .5;
 }
+
+.dice {
+    font-size: 5em;
+}
+
+.dice-2 {
+    font-size: 2.5em;
+}
