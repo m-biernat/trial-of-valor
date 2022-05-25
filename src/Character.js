@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { createStore } from 'solid-js/store'
-import { attributes, presets } from './Data';
+import { attributes, categories, presets } from './Data';
 import { roll } from './Utils';
 
 export const [characterName, setCharacterName] = createSignal('');
@@ -62,6 +62,7 @@ export function addNew(id, table) {
             id: id,
             quantity: 1
         }]);
+        execute(id, table, 'onAdd');
     }
 }
 
@@ -70,13 +71,36 @@ export function modify(index, table, value) {
 
     if (character[table][index].quantity <= 0)
         remove(index, table);
+    else {
+        const action = value > 0 ? 'onAdd' : 'onRemove';
+        execute(character[table][index].id, table, action);
+    } 
 } 
 
 export function remove(index, table) {
-    const id = character[table][index].id;
-    setCharacter(table, arr => arr.filter(item => item.id !== id));
+    const entity = character[table][index];
+    
+    for (let i=0; i<entity.quantity; i++)
+        execute(character[table][index].id, table, 'onRemove');
+
+    setCharacter(table, arr => arr.filter(item => item.id !== entity.id));
 }
 
 export function mark(index, table) {
     setCharacter(table, index, 'quantity', v => v - 1);
+    execute(character[table][index].id, table, 'onMark');
+}
+
+const remote = {
+    "modAttr": modifyAttribute
+} 
+
+function execute(id, table, action) {
+    const executable = categories[table][id][action];
+
+    if (executable) {
+        for (const exec of executable) {
+            remote[exec[0]](exec[1], exec[2], exec[3], exec[4], exec[5]);
+        }
+    }
 }
