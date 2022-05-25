@@ -16,7 +16,10 @@ function newCharacter() {
     return { 
         name: characterName(),
         class: selectedClass(),
-        attributes: Object.assign({}, attributes[selectedClass()])
+        attributes: Object.assign({}, attributes[selectedClass()]),
+        effects: [],
+        items: [],
+        quests: []
     }
 }
 
@@ -42,5 +45,38 @@ export function rollPreset() {
 }
 
 export function modifyAttribute(name, value) {
-    setCharacter('attributes', name, character.attributes[name] + value);
+    setCharacter('attributes', name, v => v + value);
+}
+
+function getIndex(id, table) {
+    return character[table].findIndex(el => el.id === id);
+}
+
+export function addNew(id, table) {
+    const ind = getIndex(id, table);
+
+    if (ind >= 0)
+        modify(ind, table, 1);
+    else {
+        setCharacter(table, arr => [...arr, {
+            id: id,
+            quantity: 1
+        }]);
+    }
+}
+
+export function modify(index, table, value) {
+    setCharacter(table, index, 'quantity', v => v + value);
+
+    if (character[table][index].quantity <= 0)
+        remove(index, table);
+} 
+
+export function remove(index, table) {
+    const id = character[table][index].id;
+    setCharacter(table, arr => arr.filter(item => item.id !== id));
+}
+
+export function mark(index, table) {
+    setCharacter(table, index, 'quantity', v => v - 1);
 }

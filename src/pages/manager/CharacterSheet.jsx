@@ -3,6 +3,7 @@ import BackButton from "../components/BackButton";
 import CharacterAttributes from "../components/CharacterAttributes";
 import CharacterName from "../components/CharacterName";
 import CharacterControls from "../components/CharacterControls";
+import { ItemList, ButtonARD, ModalARD, ButtonMAC, ModalMAC, IndexNumber, IndexMark } from "../components/ItemList";
 
 import { character, setCharacter, removeCharacter } from "../../Character";
 
@@ -35,9 +36,12 @@ function CharacterSheet() {
             <br />
             <CharacterControls />
             <br />
-
-		    <div>Hello, {character.name}!</div>
-            <button type="button" class="btn btn-primary btn-lg" onClick={() => setCharacter('attributes', 'mp', character.attributes.mp + 1)}>Test</button>
+            <ItemList name="effect" title="Effects" categoryName="effects" button={ButtonARD} modal={ModalARD} symbol="bi bi-hash" index={IndexNumber} />
+            <br />
+            <ItemList name="item" title="Inventory" categoryName="items" button={ButtonARD} modal={ModalARD} symbol="bi bi-hash" index={IndexNumber} />
+            <br />
+            <ItemList name="quest" title="Quest Log" categoryName="quests" button={ButtonMAC} modal={ModalMAC} symbol="bi bi-square" index={IndexMark} />
+            <br />
         </div>
 	);
 }

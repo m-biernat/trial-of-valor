@@ -92,16 +92,21 @@ function CharacterControls() {
                 pickDice('#defence-result')
             }/>
             <ModalAccept id="defence-result" title="Your defence value" action={() => modifyAttribute('hp', -1)} body={
-                <div class="row">
-                    <h1 class="col-auto ms-auto me-1">
-                        <i class={`bi bi-dice-${rollValue()}`}></i>
-                    </h1>
-                    <h1 class="col-auto">+</h1>
-                    <h1 class="col-auto">{character.attributes.ap}</h1>
-                    <h1 class="col-auto">=</h1>
-                    <h1 class="col-auto ms-2 me-auto">
-                        <strong>{character.attributes.dp + rollValue()}</strong>
-                    </h1>
+                <div>
+                    <div class="row">
+                        <h1 class="col-auto ms-auto me-1">
+                            <i class={`bi bi-dice-${rollValue()}`}></i>
+                        </h1>
+                        <h1 class="col-auto">+</h1>
+                        <h1 class="col-auto">{character.attributes.dp}</h1>
+                        <h1 class="col-auto">=</h1>
+                        <h1 class="col-auto ms-2 me-auto">
+                            <strong>{character.attributes.dp + rollValue()}</strong>
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <h5 class="col-auto ms-auto me-auto py-2">Is your enemy's attack higher?</h5>
+                    </div>
                 </div>
             }/>
         </div>
