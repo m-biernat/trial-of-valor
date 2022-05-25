@@ -82,3 +82,30 @@
 .mark-index {
     width: 0.5em;
 }
+
+.a4 {
+    max-width: 297mm;
+}
+
+.playing-card {
+    width: 70mm; 
+    height: 97mm;
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+    @page {
+        size: A4 landscape;
+        margin: 10%;
+    }
+}
+
+.justify-text {
+    text-align: justify; 
+    text-justify: inter-word;
+}
