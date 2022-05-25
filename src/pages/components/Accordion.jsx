@@ -32,7 +32,8 @@ export function AccordionItem(props) {
             <div class="accordion-body">
                 <div class="row">
                     <div class="col-auto">
-                        {props.body}
+                        {props.description}
+                        {props.behaviour}
                     </div>
                 </div>
                 {props.buttons}

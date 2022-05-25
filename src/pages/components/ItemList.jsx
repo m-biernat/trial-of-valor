@@ -26,7 +26,8 @@ export function ItemList(props) {
                                 id={`${props.name}-${index()}`} 
                                 index={props.index({quantity: item.quantity})} 
                                 title={<Label id={item.id} category={category} />}
-                                body={parseHTML(category[item.id].description)}
+                                description={parseHTML(category[item.id].description)}
+                                behaviour={parseHTML(category[item.id].behaviour)}
                                 buttons={props.button({name: props.name, category: category, active: active(), status: item.quantity})}
                                 onClick={() => setActive({id: item.id, index: index()})}
                             />

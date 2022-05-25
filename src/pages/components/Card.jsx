@@ -9,6 +9,7 @@ export function Face(props) {
             <div class="pe-2 ps-2">
                 <h5 class="card-title text-center mb-2">{card.name}</h5>
                 <p class="card-text justify-text">{parseHTML(card.description)}</p>
+                <p class="card-text text-center my-2">{parseHTML(card.behaviour)}</p>
             </div>
             <h6 class="card-subtitle text-muted text-center my-auto mb-3">{props.category.toUpperCase()}</h6>
         </div>

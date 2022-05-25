@@ -88,7 +88,7 @@ export function remove(index, table) {
 
 export function mark(index, table) {
     setCharacter(table, index, 'quantity', v => v - 1);
-    execute(character[table][index].id, table, 'onMark');
+    execute(character[table][index].id, table, 'onComplete');
 }
 
 const remote = {
