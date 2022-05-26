@@ -141,3 +141,31 @@ export function IndexMark(props) {
         </Show>
     );
 }
+
+export function Listless(props) {
+    const category = categories[props.categoryName];
+    const firstKey = Object.keys(category)[0];
+
+    const [value, setValue] = createSignal(firstKey);
+
+    return (
+        <>
+            <div class="accordion" id={`${props.name}-list`}>
+                <AccordionHeader title={props.title} symbol={props.symbol} target={`#add-new-${props.name}`} />
+            </div>
+            <ModalAccept 
+                id={`add-new-${props.name}`} 
+                title={`Add new ${props.name}`} 
+                action={() => addNew(value(), props.categoryName)} 
+                body={
+                    <select class="form-select" value={value()} onChange={(event) => setValue(event.target.value)}>
+                        <For each={Object.keys(category)} fallback={<div>Loading...</div>}>
+                            {(item) => (
+                                <option value={item}>({item}) {category[item].name}</option>
+                            )}
+                        </For>
+                    </select>
+            }/>
+        </>
+    );
+}

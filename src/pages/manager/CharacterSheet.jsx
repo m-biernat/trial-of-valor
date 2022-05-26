@@ -3,7 +3,7 @@ import BackButton from "../components/BackButton";
 import CharacterAttributes from "../components/CharacterAttributes";
 import CharacterName from "../components/CharacterName";
 import CharacterControls from "../components/CharacterControls";
-import { ItemList, ButtonARD, ModalARD, ButtonMAC, ModalMAC, IndexNumber, IndexMark } from "../components/ItemList";
+import { ItemList, ButtonARD, ModalARD, ButtonMAC, ModalMAC, IndexNumber, IndexMark, Listless } from "../components/ItemList";
 
 import { character, setCharacter, removeCharacter } from "../../Character";
 
@@ -36,7 +36,7 @@ function CharacterSheet() {
             <br />
             <CharacterControls />
             <br />
-            <ItemList name="effect" title="Effects" categoryName="effects" button={ButtonARD} modal={ModalARD} symbol="bi bi-hash" index={IndexNumber} />
+            <Listless name="effect" title="Status" categoryName="effects" symbol="bi bi-person-lines-fill" />
             <br />
             <ItemList name="item" title="Inventory" categoryName="items" button={ButtonARD} modal={ModalARD} symbol="bi bi-hash" index={IndexNumber} />
             <br />
