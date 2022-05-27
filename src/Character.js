@@ -52,10 +52,10 @@ function getIndex(id, table) {
     return character[table].findIndex(el => el.id === id);
 }
 
-export function addNew(id, table) {
+export function addNew(id, table, stackable) {
     const ind = getIndex(id, table);
 
-    if (ind >= 0)
+    if (ind >= 0 && stackable == true)
         modify(ind, table, 1);
     else {
         setCharacter(table, arr => [...arr, {
@@ -83,7 +83,10 @@ export function remove(index, table) {
     for (let i=0; i<entity.quantity; i++)
         execute(character[table][index].id, table, 'onRemove');
 
-    setCharacter(table, arr => arr.filter(item => item.id !== entity.id));
+    //setCharacter(table, arr => arr.filter(item => item.id !== entity.id));
+    const copy = [...character[table]];
+    copy.splice(index, 1);
+    setCharacter(table, copy);
 }
 
 export function mark(index, table) {
@@ -95,7 +98,7 @@ const remote = {
     "modAttr": modifyAttribute
 } 
 
-function execute(id, table, action) {
+export function execute(id, table, action) {
     const executable = categories[table][id][action];
 
     if (executable) {

@@ -1,13 +1,18 @@
 import BackButton from "../components/BackButton";
-
-import CharacterAttributes from "../components/CharacterAttributes";
-import CharacterName from "../components/CharacterName";
-import CharacterControls from "../components/CharacterControls";
-import { ItemList, ButtonARD, ModalARD, ButtonMAC, ModalMAC, IndexNumber, IndexMark, Listless } from "../components/ItemList";
-
-import { character, setCharacter, removeCharacter } from "../../Character";
+import { character, removeCharacter } from "../../Character";
 
 import { createEffect } from "solid-js";
+
+import CharacterName from "../components/CharacterName";
+import CharacterAttributes from "../components/CharacterAttributes";
+
+import CharacterControls from "../components/CharacterControls";
+
+import Inventory from "../components/Inventory";
+import QuestLog from "../components/QuestLog";
+
+
+import { AddItem } from "../components/ItemManagement";
 
 function CharacterSheet() {
     createEffect(() => {
@@ -36,11 +41,11 @@ function CharacterSheet() {
             <br />
             <CharacterControls />
             <br />
-            <Listless name="effect" title="Status" categoryName="effects" symbol="bi bi-person-lines-fill" />
+            <AddItem name="effect" title="Status" categoryName="effects" symbol="bi bi-person-lines-fill" />
             <br />
-            <ItemList name="item" title="Inventory" categoryName="items" button={ButtonARD} modal={ModalARD} symbol="bi bi-hash" index={IndexNumber} />
+            <Inventory />
             <br />
-            <ItemList name="quest" title="Quest Log" categoryName="quests" button={ButtonMAC} modal={ModalMAC} symbol="bi bi-square" index={IndexMark} />
+            <QuestLog />
             <br />
         </div>
 	);

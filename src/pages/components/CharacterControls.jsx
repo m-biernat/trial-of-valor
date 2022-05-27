@@ -44,7 +44,7 @@ function CharacterControls() {
                     </button>
                 </div>
                 <div class="row">
-                    <h5 class="col-auto ms-auto me-auto py-2">or press <em>'Next'</em> to <strong>autoroll</strong>!</h5>
+                    <h5 class="col-auto ms-auto me-auto py-2">or press 'Next' to <strong>autoroll</strong>!</h5>
                 </div>
             </div>
         );

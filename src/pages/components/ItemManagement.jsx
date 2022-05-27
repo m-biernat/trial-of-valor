@@ -1,4 +1,4 @@
-import { addNew, modify, remove, character, mark } from "../../Character";
+import { addNew, modify, remove, character, mark, execute } from "../../Character";
 import { categories } from "../../Data";
 
 import { AccordionEmpty, AccordionHeader, AccordionItem } from "./Accordion";
@@ -38,7 +38,7 @@ export function ItemList(props) {
             <ModalAccept 
                 id={`add-new-${props.name}`} 
                 title={`Add new ${props.name}`} 
-                action={() => addNew(value(), props.categoryName)} 
+                action={() => addNew(value(), props.categoryName, props.stackable)} 
                 body={
                     <select class="form-select" value={value()} onChange={(event) => setValue(event.target.value)}>
                         <For each={Object.keys(category)} fallback={<div>Loading...</div>}>
@@ -62,7 +62,7 @@ function Label(props) {
     );
 }
 
-export function ModalARD(props) {
+export function ModalAddRemoveDelete(props) {
     return (
         <>
             <ModalAccept id={`add-${props.name}`} title={`Add ${props.name}`} action={() => modify(props.active.index, props.categoryName, 1)} body={
@@ -87,7 +87,7 @@ export function ModalARD(props) {
     );
 }
 
-export function ButtonARD(props) {
+export function ButtonsAddRemoveDelete(props) {
     return (
         <div class="row">
             <div class="col-auto ms-auto me-auto mt-3">
@@ -101,7 +101,7 @@ export function ButtonARD(props) {
     );
 }
 
-export function ModalMAC(props) {
+export function ModalCompleteAbandon(props) {
     return (
         <>
             <ModalAccept id={`mark-${props.name}-as-complete`} title={`Mark ${props.name} as complete`} action={() => mark(props.active.index, props.categoryName)} body={
@@ -110,29 +110,36 @@ export function ModalMAC(props) {
                     <Label id={props.active.id} category={props.category} />
                 </div>
             }/>
+            <ModalAccept id={`abandon-${props.name}`} title={`Abandon ${props.name}`} action={() => remove(props.active.index, props.categoryName)} body={
+                <div>
+                    <p class="text-center">Do you want to abandon {props.name}:</p>
+                    <Label id={props.active.id} category={props.category} />
+                </div>
+            }/>
         </>
     );
 }
 
-export function ButtonMAC(props) {
+export function ButtonsCompleteAbandon(props) {
     return (
         <Show when={props.status > 0}>
             <div class="row">
                 <div class="col-auto ms-auto me-auto mt-3">
                     <button type="button" class="btn btn-outline-success ms-2" data-bs-toggle="modal" data-bs-target={`#mark-${props.name}-as-complete`}><i class="bi bi-check-lg"></i></button>
+                    <button type="button" class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target={`#abandon-${props.name}`}><i class="bi bi-x-lg"></i></button>
                 </div>
             </div>
         </Show>
     );
 }
 
-export function IndexNumber(props) {
+export function IndexQuantity(props) {
     return (
         <strong>{props.quantity}</strong>
     );
 }
 
-export function IndexMark(props) {
+export function IndexComplete(props) {
     return (
         <Show when={props.quantity > 0} fallback={
             <strong class="mark-index">✓</strong>
@@ -142,7 +149,7 @@ export function IndexMark(props) {
     );
 }
 
-export function Listless(props) {
+export function AddItem(props) {
     const category = categories[props.categoryName];
     const firstKey = Object.keys(category)[0];
 
@@ -156,7 +163,7 @@ export function Listless(props) {
             <ModalAccept 
                 id={`add-new-${props.name}`} 
                 title={`Add new ${props.name}`} 
-                action={() => addNew(value(), props.categoryName)} 
+                action={() => execute(value(), props.categoryName, 'onAdd')} 
                 body={
                     <select class="form-select" value={value()} onChange={(event) => setValue(event.target.value)}>
                         <For each={Object.keys(category)} fallback={<div>Loading...</div>}>
@@ -165,7 +172,8 @@ export function Listless(props) {
                             )}
                         </For>
                     </select>
-            }/>
+                }
+            />
         </>
     );
 }

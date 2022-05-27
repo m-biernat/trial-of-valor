@@ -1,5 +1,5 @@
 import BackButton from "./components/BackButton";
-import { Face, Reverse } from "./components/Card";
+import { Face, Reverse } from "./components/Cards";
 import { categories } from "../Data";
 
 import { For } from "solid-js"; 

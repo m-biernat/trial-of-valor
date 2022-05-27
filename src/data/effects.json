@@ -1,1 +1,1 @@
-{"E01":{"name":"Healing [HP +1]","onAdd":[["modAttr","hp",1]],"quantity":0},"E02":{"name":"Damage [HP -1]","onAdd":[["modAttr","hp",-1]],"quantity":0}}
+{"E01":{"name":"Healing [HP +1]","onAdd":[["modAttr","hp",1]],"quantity":0},"E02":{"name":"Damage [HP -1]","onAdd":[["modAttr","hp",-1]],"quantity":0},"E03":{"name":"Deathmatch [MP +1]","onAdd":[["modAttr","mp",1]],"quantity":0}}
