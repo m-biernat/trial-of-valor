@@ -1,4 +1,4 @@
-import { Modal, ModalAccept, ModalNext } from "./Modals";
+import { ModalOk, ModalAccept, ModalNext } from "./Modals";
 import { roll } from "../../Utils";
 import { createSignal } from "solid-js";
 import { character, modifyAttribute } from "../../Character";
@@ -63,7 +63,7 @@ function CharacterControls() {
                     <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#defend">Defend</button>
                 </div>
             </div>
-            <Modal id="roll" title="Roll the dice!" body={
+            <ModalOk id="roll" title="Roll the dice!" body={
                 <div class="row">
                     <button type="button" class="btn col-auto ms-auto me-auto" onClick={rollDice}>
                         <i class={`bi bi-dice-${rollValue()} dice`}></i>
@@ -74,7 +74,7 @@ function CharacterControls() {
             <ModalNext id="attack" title="Roll to attack" target="#attack-result" action={rollDice} body={
                 pickDice('#attack-result')
             }/>
-            <Modal id="attack-result" title="Your attack value" body={
+            <ModalOk id="attack-result" title="Your attack value" body={
                 <div class="row">
                     <h1 class="col-auto ms-auto me-1">
                         <i class={`bi bi-dice-${rollValue()}`}></i>

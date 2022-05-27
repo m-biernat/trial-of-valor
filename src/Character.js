@@ -19,7 +19,8 @@ function newCharacter() {
         attributes: Object.assign({}, attributes[selectedClass()]),
         effects: [],
         items: [],
-        quests: []
+        quests: [],
+        goal: 5
     }
 }
 
@@ -33,7 +34,7 @@ export function loadCharacter() {
         setCharacter(JSON.parse(json));
 }
 
-export function removeCharacter() {
+export function deleteCharacter() {
     localStorage.removeItem('character');
     window.location.reload();
 }

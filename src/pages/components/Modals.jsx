@@ -1,4 +1,6 @@
-export function Modal(props) {
+import { Modal } from 'bootstrap';
+
+export function ModalOk(props) {
     return (
         <div class="modal fade" id={props.id} tabindex="-1" aria-labelledby={`${props.id}Label`} aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -59,5 +61,12 @@ export function ModalNext(props) {
                 </div>
             </div>
         </div>
+    );
+}
+
+export function getModal(id) {
+    return new Modal(
+        document.getElementById(id), 
+        {}
     );
 }
