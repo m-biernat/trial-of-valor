@@ -70,10 +70,10 @@ function Deck() {
                 <div class="col-auto my-auto">
                     <BackButton href="/" />
                 </div>
-                <div class="col-auto ms-auto">
+                <div class="col text-center">
                     <h1 class="display-6">Deck Preview</h1>
                 </div>
-                <div class="col-auto ms-auto my-auto">
+                <div class="col-auto my-auto">
                     <button type="button" class="btn btn-outline-secondary" onClick={() => print()}>
                         <i class="bi bi-printer"></i>
                     </button>

@@ -31,10 +31,10 @@ function CharacterSheet() {
                 <div class="col-auto my-auto">
                     <BackButton href="/" />
                 </div>
-                <div class="col-auto ms-auto">
+                <div class="col text-center">
                     <h1 class="display-6">Character Sheet</h1>
                 </div>
-                <div class="col-auto ms-auto my-auto">
+                <div class="col-auto my-auto">
                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-character">
                         <i class="bi bi-trash3"></i>
                     </button>
