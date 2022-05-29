@@ -16,12 +16,12 @@ import { ModalOk, ModalAccept, getModal } from "../components/Modals";
 
 function CharacterSheet() {
     createEffect(() => {
-        if (character.attributes.hp == 0)
+        if (character.attributes.hp <= 0)
             getModal("you-dead").show();
     });
 
     createEffect(() => {
-        if (character.attributes.mp == character.goal)
+        if (character.attributes.mp >= character.goal)
             getModal("you-won").show();
     });
 

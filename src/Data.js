@@ -8,6 +8,10 @@ import effects_ from './data/effects.json'
 import items_ from './data/items.json'
 import quests_ from './data/quests.json'
 
+import tokens_ from './data/tokens.json'
+import placements_ from './data/placements.json'
+import setup_ from './data/setup.json'
+
 export const classes = classes_
 export const attributes = attributes_
 export const resources = resources_
@@ -23,3 +27,7 @@ export const categories = {
     "items": items,
     "quests": quests
 }
+
+export const tokens = tokens_
+export const placements = placements_
+export const setup = setup_

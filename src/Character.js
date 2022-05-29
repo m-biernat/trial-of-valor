@@ -84,7 +84,6 @@ export function remove(index, table) {
     for (let i=0; i<entity.quantity; i++)
         execute(character[table][index].id, table, 'onRemove');
 
-    //setCharacter(table, arr => arr.filter(item => item.id !== entity.id));
     const copy = [...character[table]];
     copy.splice(index, 1);
     setCharacter(table, copy);
