@@ -12,11 +12,12 @@ export function createGame() {
 function newGame() {
     return { 
         characters: [],
+        deathCount: 0,
         stage: 1,
         turn: 0,
         round: 1, 
         maxRounds: 30,
-        placement: getPlacement()
+        placement: getPlacement(),
     }
 }
 
@@ -79,18 +80,36 @@ export function uncheck() {
 }
 
 export function endTurn() {
+    if (game.deathCount == game.characters.length)
+        return;
+
     const nextTurn = game.turn + 1;
 
     if (nextTurn > game.characters.length - 1) {
         setGame('turn', 0);
         setGame('round', v => v + 1);
-    } else {
+    } 
+    else
         setGame('turn', v => v + 1);
-    }
+
+    if (!game.characters[game.turn].alive)
+        endTurn();
 }
 
 export function markAsDead(index) {
     setGame('characters', index, 'alive', false);
+    setGame('deathCount', v => v + 1);
+    
     if (game.turn == index)
         endTurn();
+}
+
+export function markAsAlive(index) {
+    setGame('characters', index, 'alive', true);
+    setGame('deathCount', v => v - 1);
+}
+
+export function lastManStanding() {
+    return game.characters.length > 1 && 
+           game.deathCount >= game.characters.length - 1;
 }

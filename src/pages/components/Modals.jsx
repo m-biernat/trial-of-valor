@@ -2,11 +2,11 @@ import { Modal } from 'bootstrap';
 
 export function ModalOk(props) {
     return (
-        <div class="modal fade" id={props.id} tabindex="-1" aria-labelledby={`${props.id}Label`} aria-hidden="true">
+        <div class="modal fade" id={props.id} tabindex="-1" aria-labelledby={`${props.id}-label`} aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id={`${props.id}Label`}>{props.title}</h5>
+                    <h5 class="modal-title" id={`${props.id}-label`}>{props.title}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -23,11 +23,11 @@ export function ModalOk(props) {
 
 export function ModalAccept(props) {
     return (
-        <div class="modal fade" id={props.id} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby={`${props.id}Label`} aria-hidden="true">
+        <div class="modal fade" id={props.id} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby={`${props.id}-label`} aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id={`${props.id}Label`}>{props.title}</h5>
+                    <h5 class="modal-title" id={`${props.id}-label`}>{props.title}</h5>
                 </div>
                 <div class="modal-body">
                     {props.body}
@@ -44,11 +44,11 @@ export function ModalAccept(props) {
 
 export function ModalNext(props) {
     return (
-        <div class="modal fade" id={props.id} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby={`${props.id}Label`} aria-hidden="true">
+        <div class="modal fade" id={props.id} data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby={`${props.id}-label`} aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id={`${props.id}Label`}>{props.title}</h5>
+                    <h5 class="modal-title" id={`${props.id}-label`}>{props.title}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
