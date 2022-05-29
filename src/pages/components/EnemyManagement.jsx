@@ -1,7 +1,7 @@
 import { enemies, placements, tokens } from "../../Data";
 
 import { AccordionEmpty, AccordionHeader, AccordionItem } from "./Accordion";
-import { ModalOk, ModalNext, ModalAccept } from "./Modals";
+import { ModalOk, ModalNext, ModalAccept, getModal } from "./Modals";
 
 import { createSignal, Show } from "solid-js";
 import { roll, parseHTML } from "../../Utils";
@@ -19,6 +19,11 @@ export function EnemyList() {
 
     function token(id) {
         return tokens[placement(id).token];
+    }
+
+    function onAdd() {
+        addEnemy(value());
+        getModal('enemy-place-token').show();
     }
 
     return (
@@ -45,7 +50,7 @@ export function EnemyList() {
             <ModalAccept 
                 id="add-new-enemy" 
                 title="Add new enemy" 
-                action={() => addEnemy(value())}
+                action={() => onAdd()}
                 body={
                     <select class="form-select" value={value()} onChange={(event) => setValue(event.target.value)}>
                         <For each={Object.keys(enemies)} fallback={<div>Loading...</div>}>
@@ -55,6 +60,14 @@ export function EnemyList() {
                         </For>
                     </select>
             }/>
+
+            <ModalOk id="enemy-place-token" title="Place token" body={
+                <div>
+                    <p class="text-center">Place token on board:</p>
+                    <Label id={placement(active().id).token} name={token(active().id).name} />
+                </div>
+            }/>
+
             <ModalAttackDefenceRemove id={active().id} name={token(active().id).name} index={active().index} />
         </>
     );
