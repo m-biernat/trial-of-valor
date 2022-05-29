@@ -1,4 +1,4 @@
-import { nextStage, backStage, game, checked, setChecked, newPlacement} from "../../Game"
+import { completeSetup, backStage, game, checked, setChecked, newPlacement} from "../../Game"
 import { tokens, placements, setup } from "../../Data";
 import { For } from "solid-js";
 import { ModalOk, getModal, ModalAccept } from "../components/Modals";
@@ -46,7 +46,7 @@ function TokenPlacement() {
                 </div>
             } />
 
-            <ModalAccept id="all-checked" title="Setup complete" action={() => nextStage()} body={
+            <ModalAccept id="all-checked" title="Setup complete" action={() => completeSetup()} body={
                 <div class="text-center">
                     <h5>Are you sure you want to proceed?</h5>
                 </div>

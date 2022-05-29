@@ -1,7 +1,7 @@
 import { createEffect } from "solid-js";
 import { game, endTurn, lastManStanding } from "../../Game";
 import CharacterList from "../components/CharacterList";
-import { EncounterList } from "../components/EncounterManagement";
+import { EnemyList } from "../components/EnemyManagement";
 import { getModal, ModalOk } from "../components/Modals";
 
 function MainView() {
@@ -33,7 +33,7 @@ function MainView() {
             </div>
 
             <div class="col-sm">
-                <EncounterList />
+                <EnemyList />
             </div>
         </div>
         <ModalOk id="last-man-standing" title="Last man standing" body={

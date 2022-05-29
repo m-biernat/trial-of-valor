@@ -1,5 +1,5 @@
 import { createStore } from 'solid-js/store'
-import { placements } from './Data';
+import { enemies, placements, setup } from './Data';
 import { roll } from './Utils';
 
 export const [checked, setChecked] = createStore(uncheck());
@@ -18,7 +18,7 @@ function newGame() {
         round: 1, 
         maxRounds: 30,
         placement: getPlacement(),
-        encounters: ['N01']
+        enemies: []
     }
 }
 
@@ -56,6 +56,19 @@ export function nextStage() {
 
 export function backStage() {
     setGame('stage', v => v - 1);
+}
+
+export function completeSetup() {
+    const enemyPlacements = {};
+    for (const enemy in enemies)
+        enemyPlacements[enemies[enemy].placement] = enemy;
+
+    for (const placement in setup) {
+        const id = enemyPlacements[placement];
+        if (id)
+            addEnemy(id);
+    }
+    nextStage();
 }
 
 function getPlacement() {
@@ -115,12 +128,12 @@ export function lastManStanding() {
            game.deathCount >= game.characters.length - 1;
 }
 
-export function addEncounter(id) {
-    setGame('encounters', arr => [...arr, id]);
+export function addEnemy(id) {
+    setGame('enemies', arr => [...arr, id]);
 }
 
-export function removeEncounter(index) {
-    const copy = [...game.encounters];
+export function removeEnemy(index) {
+    const copy = [...game.enemies];
     copy.splice(index, 1);
-    setGame('encounters', copy);
+    setGame('enemies', copy);
 }

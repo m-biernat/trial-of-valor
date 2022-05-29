@@ -1,20 +1,20 @@
-import { encounters, placements, tokens } from "../../Data";
+import { enemies, placements, tokens } from "../../Data";
 
 import { AccordionEmpty, AccordionHeader, AccordionItem } from "./Accordion";
 import { ModalOk, ModalNext, ModalAccept } from "./Modals";
 
 import { createSignal, Show } from "solid-js";
 import { roll, parseHTML } from "../../Utils";
-import { game, addEncounter, removeEncounter } from "../../Game";
+import { game, addEnemy, removeEnemy } from "../../Game";
 
-export function EncounterList() {
-    const firstKey = Object.keys(encounters)[0];
+export function EnemyList() {
+    const firstKey = Object.keys(enemies)[0];
     
     const [active, setActive] = createSignal({id: firstKey, index: 0});
     const [value, setValue] = createSignal(firstKey);
 
     function placement(id) {
-        return placements[encounters[id].placement];
+        return placements[enemies[id].placement];
     }
 
     function token(id) {
@@ -23,17 +23,17 @@ export function EncounterList() {
 
     return (
         <>
-            <div class="accordion" id="encounter-list">
-                <AccordionHeader title="Encounters" symbol="bi bi-geo-alt ms-1" target="#add-new-encounter" />
-                <Show when={game.encounters.length > 0} fallback={<AccordionEmpty name="encounter" />}>
-                    <For each={game.encounters} fallback={<div>Loading...</div>}>
+            <div class="accordion" id="enemy-list">
+                <AccordionHeader title="Enemies" symbol="bi bi-geo-alt ms-1" target="#add-new-enemy" />
+                <Show when={game.enemies.length > 0} fallback={<AccordionEmpty name="enemie" />}>
+                    <For each={game.enemies} fallback={<div>Loading...</div>}>
                         {(item, index) => (
                             <AccordionItem 
-                                parent="#encounter-list" 
-                                id={`encounter-${index()}`} 
+                                parent="#enemy-list" 
+                                id={`enemy-${index()}`} 
                                 index={<strong>{placement(item).values[game.placement]}</strong>} 
                                 title={<Label id={item} name={token(item).name} />}
-                                description={parseHTML(encounters[item].description)}
+                                description={parseHTML(enemies[item].description)}
                                 behaviour={<Details id={item} />}
                                 buttons={<ButtonsAttackDefenceRemove />}
                                 onClick={() => setActive({id: item, index: index()})}
@@ -43,12 +43,12 @@ export function EncounterList() {
                 </Show>
             </div>
             <ModalAccept 
-                id="add-new-encounter" 
-                title="Add new encounter" 
-                action={() => addEncounter(value())}
+                id="add-new-enemy" 
+                title="Add new enemy" 
+                action={() => addEnemy(value())}
                 body={
                     <select class="form-select" value={value()} onChange={(event) => setValue(event.target.value)}>
-                        <For each={Object.keys(encounters)} fallback={<div>Loading...</div>}>
+                        <For each={Object.keys(enemies)} fallback={<div>Loading...</div>}>
                             {(item) => (
                                 <option value={item}>({item}) {token(item).name}</option>
                             )}
@@ -72,8 +72,8 @@ function Label(props) {
 function Details(props) {
     return(
         <div class="my-2">
-            <strong>AP</strong>: {encounters[props.id].ap}
-            <strong class="ms-3">DP</strong>: {encounters[props.id].dp}
+            <strong>AP</strong>: {enemies[props.id].ap}
+            <strong class="ms-3">DP</strong>: {enemies[props.id].dp}
         </div>
     );
 }
@@ -92,43 +92,43 @@ export function ModalAttackDefenceRemove(props) {
 
     return (
         <>
-            <ModalNext id="encounter-attack" title={`Roll ${props.name}'s attack`} target="#encounter-attack-result" action={rollDice} body={
+            <ModalNext id="enemy-attack" title={`Roll ${props.name}'s attack`} target="#enemy-attack-result" action={rollDice} body={
                 <div>
                     <p class="text-center">Proceed to roll attack for:</p>
                     <Label id={props.id} name={props.name} />
                 </div>
             }/>
-            <ModalOk id="encounter-attack-result" title={`${props.name}'s attack value`} body={
+            <ModalOk id="enemy-attack-result" title={`${props.name}'s attack value`} body={
                 <div class="row">
                     <h1 class="col-auto ms-auto me-1">
                         <i class={`bi bi-dice-${rollValue()}`}></i>
                     </h1>
                     <h1 class="col-auto">+</h1>
-                    <h1 class="col-auto">{encounters[props.id].ap}</h1>
+                    <h1 class="col-auto">{enemies[props.id].ap}</h1>
                     <h1 class="col-auto">=</h1>
                     <h1 class="col-auto ms-2 me-auto">
-                        <strong>{encounters[props.id].ap + rollValue()}</strong>
+                        <strong>{enemies[props.id].ap + rollValue()}</strong>
                     </h1>
                 </div>
             }/>
 
-            <ModalNext id="encounter-defence" title={`Roll ${props.name}'s defence`} target="#encounter-defence-result" action={rollDice} body={
+            <ModalNext id="enemy-defence" title={`Roll ${props.name}'s defence`} target="#enemy-defence-result" action={rollDice} body={
                 <div>
                     <p class="text-center">Proceed to roll defence for:</p>
                     <Label id={props.id} name={props.name} />
                 </div>
             }/>
-            <ModalAccept id="encounter-defence-result" title={`${props.name}'s defence value`} action={() => removeEncounter(props.index)} body={
+            <ModalAccept id="enemy-defence-result" title={`${props.name}'s defence value`} action={() => removeEnemy(props.index)} body={
                 <div>
                     <div class="row">
                         <h1 class="col-auto ms-auto me-1">
                             <i class={`bi bi-dice-${rollValue()}`}></i>
                         </h1>
                         <h1 class="col-auto">+</h1>
-                        <h1 class="col-auto">{encounters[props.id].dp}</h1>
+                        <h1 class="col-auto">{enemies[props.id].dp}</h1>
                         <h1 class="col-auto">=</h1>
                         <h1 class="col-auto ms-2 me-auto">
-                            <strong>{encounters[props.id].dp + rollValue()}</strong>
+                            <strong>{enemies[props.id].dp + rollValue()}</strong>
                         </h1>
                     </div>
                     <div class="row">
@@ -137,7 +137,7 @@ export function ModalAttackDefenceRemove(props) {
                 </div>
             }/>
 
-            <ModalAccept id="encounter-remove" title="Remove encounter" action={() => removeEncounter(props.index)} body={
+            <ModalAccept id="enemy-remove" title="Remove enemy" action={() => removeEnemy(props.index)} body={
                 <div>
                     <p class="text-center">Do you really want to remove:</p>
                     <Label id={props.id} name={props.name} />
@@ -152,10 +152,10 @@ export function ButtonsAttackDefenceRemove() {
         <div class="row">
             <div class="col-auto ms-auto me-auto">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#encounter-attack"><i class="bi bi-dice-5"></i> Attack</button>
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#encounter-defence"><i class="bi bi-dice-5"></i> Defence</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#enemy-attack"><i class="bi bi-dice-5"></i> Attack</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#enemy-defence"><i class="bi bi-dice-5"></i> Defence</button>
                 </div>
-                    <button type="button" class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#encounter-remove"><i class="bi bi-trash3"></i></button>
+                    <button type="button" class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#enemy-remove"><i class="bi bi-trash3"></i></button>
             </div>
         </div>
     );

@@ -11,7 +11,7 @@ import quests_ from './data/quests.json'
 import tokens_ from './data/tokens.json'
 import placements_ from './data/placements.json'
 import setup_ from './data/setup.json'
-import encounters_ from './data/encounters.json'
+import enemies_ from './data/enemies.json'
 
 export const classes = classes_
 export const attributes = attributes_
@@ -32,4 +32,4 @@ export const categories = {
 export const tokens = tokens_
 export const placements = placements_
 export const setup = setup_
-export const encounters = encounters_
+export const enemies = enemies_
