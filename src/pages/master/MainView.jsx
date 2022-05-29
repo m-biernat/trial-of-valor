@@ -1,6 +1,7 @@
 import { createEffect } from "solid-js";
 import { game, endTurn, lastManStanding } from "../../Game";
 import CharacterList from "../components/CharacterList";
+import { EncounterList } from "../components/EncounterManagement";
 import { getModal, ModalOk } from "../components/Modals";
 
 function MainView() {
@@ -32,9 +33,7 @@ function MainView() {
             </div>
 
             <div class="col-sm">
-                This is temporary
-                <CharacterList showKillButton={true} />
-                Here will be a list with monsters etc.
+                <EncounterList />
             </div>
         </div>
         <ModalOk id="last-man-standing" title="Last man standing" body={

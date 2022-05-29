@@ -18,6 +18,7 @@ function newGame() {
         round: 1, 
         maxRounds: 30,
         placement: getPlacement(),
+        encounters: ['N01']
     }
 }
 
@@ -112,4 +113,14 @@ export function markAsAlive(index) {
 export function lastManStanding() {
     return game.characters.length > 1 && 
            game.deathCount >= game.characters.length - 1;
+}
+
+export function addEncounter(id) {
+    setGame('encounters', arr => [...arr, id]);
+}
+
+export function removeEncounter(index) {
+    const copy = [...game.encounters];
+    copy.splice(index, 1);
+    setGame('encounters', copy);
 }
