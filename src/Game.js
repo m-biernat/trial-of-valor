@@ -90,7 +90,7 @@ export function newPlacement() {
 }
 
 export function uncheck() {
-    return new Array(Object.keys(placements).length).fill(false);
+    return new Array(Object.keys(setup).length).fill(false);
 }
 
 export function endTurn() {

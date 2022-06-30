@@ -63,8 +63,8 @@ export function EnemyList() {
 
             <ModalOk id="enemy-place-token" title="Place token" body={
                 <div>
-                    <p class="text-center">Place token on board:</p>
-                    <Label id={placement(active().id).token} name={token(active().id).name} />
+                    <p class="text-center">Place following token at <strong>{placement(value()).values[game.placement]}</strong>:</p>
+                    <Label id={placement(value()).token} name={token(value()).name} />
                 </div>
             }/>
 

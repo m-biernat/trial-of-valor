@@ -54,7 +54,7 @@ function Deck() {
 
     function Reverses(props) {
         return (
-            <div class="row">
+            <div class="row me-2" style="transform: scaleX(-1); -webkit-transform: scaleX(-1);">
                 <For each={props.batch}> 
                 {(card)=>
                     <Reverse id={card.id} category={keys[card.key]}/>
@@ -88,7 +88,9 @@ function Deck() {
                     <>
                         <Faces batch={batch} />
                         <br />
+                        <div>
                         <Reverses batch={batch} />
+                        </div>
                         <br />
                     </>
                 }
