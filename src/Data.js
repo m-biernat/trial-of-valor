@@ -7,6 +7,7 @@ import presets_ from './data/presets.json'
 import effects_ from './data/effects.json'
 import items_ from './data/items.json'
 import quests_ from './data/quests.json'
+import reverses_ from './data/reverses.json'
 
 import tokens_ from './data/tokens.json'
 import placements_ from './data/placements.json'
@@ -22,6 +23,7 @@ export const presets = presets_
 export const effects = effects_
 export const items = items_
 export const quests = quests_
+export const reverses = reverses_
 
 export const categories = {
     "effects": effects,

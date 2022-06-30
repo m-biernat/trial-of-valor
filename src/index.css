@@ -90,6 +90,9 @@
 .playing-card {
     width: 70mm; 
     height: 97mm;
+    box-shadow: inset 0 0 1em gray;
+    border-radius: 0.5em;
+    border-width: 0.15em;
 }
 
 @media print

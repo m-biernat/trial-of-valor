@@ -7,7 +7,9 @@ export function roll(min, max) {
 const parser = new DOMParser();
 
 export function parseHTML(str) {
-    return parser.parseFromString(str, "text/html").body;
+    let el = document.createElement('div');
+    el.innerHTML = parser.parseFromString(str, "text/html").body.innerHTML;
+    return el;
 }
 
 export function shuffle(array) {

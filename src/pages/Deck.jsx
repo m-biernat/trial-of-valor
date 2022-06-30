@@ -57,7 +57,7 @@ function Deck() {
             <div class="row">
                 <For each={props.batch}> 
                 {(card)=>
-                    <Reverse category={keys[card.key]}/>
+                    <Reverse id={card.id} category={keys[card.key]}/>
                 }
                 </For> 
             </div>
@@ -66,6 +66,9 @@ function Deck() {
 
 	return (
 		<div class="container py-4 center a4">
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Della+Respira&display=swap');
+            </style> 
             <div class="row no-print">
                 <div class="col-auto my-auto">
                     <BackButton href="/" />
@@ -85,8 +88,8 @@ function Deck() {
                     <>
                         <Faces batch={batch} />
                         <br />
-                        {/*<Reverses batch={batch} />
-                        <br />*/}
+                        <Reverses batch={batch} />
+                        <br />
                     </>
                 }
                 </For>
@@ -96,23 +99,3 @@ function Deck() {
 }
 
 export default Deck;
-
-/*
-<div class="row">
-                <Face />
-                <Face />
-                <Face />
-                <Face />
-                <Face />
-                <Face />
-                <Face />
-                <Face />
-                </div>
-                <br />
-                <div class="row">
-                <Face />
-                <Face />
-                <Face />
-                <Face />
-                </div>
-*/
