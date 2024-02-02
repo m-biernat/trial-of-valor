@@ -1,34 +1,50 @@
-## Usage
+# Trial of Valor
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+This is a **companion app** for a prototype **board game** called Trial of Valor. The game is based on the concept of the [Talisman](https://en.wikipedia.org/wiki/Talisman_(board_game)) game and expands on its ideas. The app helps with **micromanagement**, which is somewhat problematic in board games played IRL. It serves as a **game master** and a virtual **character sheet** with a **quest log**.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+You can check out the app [here](https://m-biernat.github.io/trial-of-valor/) or download it as a **single HTML file** from the releases.
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+## Features
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+- The single multipurpose companion app for online and offline use;
+- **Game Master** mode serves as a NPC controller;
+- **Character Manager** mode manages character sheet and quests;
+- **Deck Preview** shows all cards in the deck (and you can print them);
 
-## Available Scripts
+*The Game Master should be running on the one 'main' device and the Character Manager should be running on separate devices, e.g., smartphones.*
 
-In the project directory, you can run:
+From developer perspective:
+- deploying a static single-page app into GitHub Pages;
+- fetching data from Google Sheets;
+- building a single HTML file for offline use.
 
-### `npm dev` or `npm start`
+## Tools & Dependencies
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Node.js](https://nodejs.org/) and [vite](https://www.npmjs.com/package/vite) for development;
+- [solid.js](https://www.solidjs.com/) and [bootstrap](https://www.npmjs.com/package/bootstrap) to create the app;
+- [gh-pages](https://www.npmjs.com/package/gh-pages) for deployment;
+- [node-fetch](https://www.npmjs.com/package/node-fetch) and [csvjson-csv2json](https://www.npmjs.com/package/csvjson-csv2json) for data fetching from Google Docs.
 
-The page will reload if you make edits.<br>
+## Development
 
-### `npm run build`
+Use `npm install` to set up the project after cloning repository.
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+List of useful scripts/commands:
+- `npm start` or `npm dev` to run the app in a development mode at `http://localhost:3000`;
+- `npm fetch-data` to fetch data from Google Sheets;
+- `npm predeploy` to build before deployment;
+- `npm deploy` to deploy into GitHub Pages.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Credits
 
-## Deployment
+- **Michał Biernat** @[m-biernat](https://github.com/m-biernat) - app developer and board game co-creator;
+- **Anna Hosumbek** @[An-Hos](https://github.com/An-Hos) - board game co-creator.
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+Some icons used in the app are licensed under [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
+
+## License
+
+All rights reserved ([no license](https://choosealicense.com/no-permission/)):
+ - You **can** view (peek into the code and assets) and fork this repository;
+ - You **cannot** reproduce, distribute, or create derivative works;
+ - You **can** use the app (*"Trial of Valor"*) free of charge via the provided channels.
